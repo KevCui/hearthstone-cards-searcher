@@ -69,6 +69,7 @@ except ImportError:
 #   run script with -d, active debug mode (log file will be created)
 parser = argparse.ArgumentParser()
 parser.add_argument('name', nargs='*', help='search text')
+parser.add_argument('--standard', action='store_true', help='standard cards only')
 parser.add_argument('--sort', choices=['cost', 'popularity'], dest="sortby", help='sort cards by cost or popularity. Default sort by cost')
 parser.add_argument('-a', '--attack', help='filter attack value')
 parser.add_argument('-l', '--life', help='filter life value')
@@ -88,8 +89,10 @@ logging.debug('args:\n' + str(args))
 # Define variable
 #   rootUrl: hearthhead.com:
 #   url: search url
+#   isStandard: show only standard cards
+isStandard = ';cs=-1' if args.standard == True else ''
 rootUrl = 'http://www.hearthhead.com/cards=?filter=na='
-url = rootUrl + '+'.join(args.name) + ';ex=on#text'
+url = rootUrl + '+'.join(args.name) + ';ex=on' + isStandard + '#text'
 logging.debug('\n' + url)
 #   sortby: sortby value if it exits
 sortby = "cost" if args.sortby is None else args.sortby
