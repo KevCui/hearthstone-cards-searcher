@@ -30,11 +30,6 @@ def isCardFiltered(card, filter):
     if filter:
         for f in filter:
             if f in card.keys():
-                logging.debug(card)
-                logging.debug(card[f])
-                logging.debug(type(card[f]))
-                logging.debug(filter[f])
-                logging.debug(type(filter[f]))
                 if str(card[f]) != str(filter[f]):
                     return True
             else:
@@ -74,6 +69,7 @@ parser.add_argument('-s', '--sort', choices=['cost', 'popularity'], dest="sortby
 parser.add_argument('-a', '--attack', help='filter attack value')
 parser.add_argument('-l', '--life', help='filter life value')
 parser.add_argument('-cs', '--cost', help='filter mana cost')
+parser.add_argument('-r', '--race', choices=['', 'dragon', 'mech', 'totem', 'demon', 'pirate', 'murloc', 'beast'], help='filter race')
 parser.add_argument('-c', '--class', choices=['neutral', 'warrior', 'priest',  'hunter', 'rogue', 'paladin', 'shaman', 'mage', 'warlock', 'druid'], dest='flclass', help='filter by class')
 parser.add_argument('-d', '--debug',  action='store_true', dest="debug", help='active debug log')
 args = parser.parse_args()
@@ -108,18 +104,6 @@ classes = {
     '11':   'Druid'
 }
 
-# create filters
-filters = {}
-if args.flclass is not None:
-    filters['classs'] = list(classes.keys())[list(classes.values()).index(args.flclass[0].upper() + args.flclass[1:])]
-if args.attack is not None:
-    filters['attack'] = args.attack
-if args.life is not None:
-    filters['health'] = args.life
-if args.cost is not None:
-    filters['cost'] = args.cost
-logging.debug('Filters:\n' + str(filters))
-
 # create http request
 req = urllib.request.Request(url)
 req.add_header('User-Agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11')
@@ -140,10 +124,23 @@ for filter in soup.find('table', class_='filter-table').find_all('tr'):
 rarities = getOptionValue(soup.find('select', class_='rightselect'))
 logging.debug('Rarities:\n' + str(rarities))
 
+# create filters
+filters = {}
+if args.flclass is not None:
+    filters['classs'] = list(classes.keys())[list(classes.values()).index(args.flclass[0].upper() + args.flclass[1:])]
+if args.race is not None:
+    filters['race'] = list(races.keys())[int(list(races.values()).index(args.race[0].upper() + args.race[1:]))]
+if args.attack is not None:
+    filters['attack'] = args.attack
+if args.life is not None:
+    filters['health'] = args.life
+if args.cost is not None:
+    filters['cost'] = args.cost
+logging.debug('Filters:\n' + str(filters))
+
 # fetch data from script and generate cards json
 for script in soup.find_all('script'):
     if 'hearthstoneCards' in script.text:
-        logging.debug('--raw--')
         p = re.compile('var hearthstoneCards = \[{(.*?)\}]')
         raw = '[{' + p.search(script.text).group(1) + '}]'
         raw = raw.replace('popularity:', '"popularity":') # <- spent 1H to fix broken json! Dirty data...
@@ -188,5 +185,5 @@ logging.debug(printCards)
 
 # Print cards table
 #   printTitle: print table head title
-printTitle = ['Name', 'Cost', 'Attack', 'Life', 'Description', 'Classes', 'Set', 'Race', 'Rarity', 'Porularity']
+printTitle = ['Name', 'Cost', 'Attack', 'Life', 'Description', 'Class', 'Set', 'Race', 'Rarity', 'Porularity']
 print(tabulate(printCards, printTitle, tablefmt="grid"))
