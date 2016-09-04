@@ -8,7 +8,7 @@ created:  04 Sep 2016
 
 hsSearch
 ========
-Show Hearthstone cards information in CLI. All cards data are collected from http://www.hearthhead.com/llected
+Show Hearthstone cards information in CLI. All cards data are collected from http://www.hearthhead.com/
 
 ### Requirement
 * python3
