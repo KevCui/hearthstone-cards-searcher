@@ -71,6 +71,9 @@ except ImportError:
 parser = argparse.ArgumentParser()
 parser.add_argument('name', nargs='*', help='search text')
 parser.add_argument('-s', '--sort', choices=['cost', 'popularity'], dest="sortby", help='sort cards by cost or popularity. Default sort by cost')
+parser.add_argument('-a', '--attack', help='filter attack value')
+parser.add_argument('-l', '--life', help='filter life value')
+parser.add_argument('-cs', '--cost', help='filter mana cost')
 parser.add_argument('-c', '--class', choices=['neutral', 'warrior', 'priest',  'hunter', 'rogue', 'paladin', 'shaman', 'mage', 'warlock', 'druid'], dest='flclass', help='filter by class')
 parser.add_argument('-d', '--debug',  action='store_true', dest="debug", help='active debug log')
 args = parser.parse_args()
@@ -91,9 +94,6 @@ logging.debug('\n' + url)
 sortby = "cost" if args.sortby is None else args.sortby
 logging.debug('sortby: ' + sortby)
 
-# print table head title
-printTitle = ['Name', 'Cost', 'Attack', 'Life', 'Description', 'classes', 'Set', 'Race', 'Rarity', 'Porularity']
-
 # create classes dict for class map
 classes = {
     '':     'Neutral',
@@ -112,6 +112,12 @@ classes = {
 filters = {}
 if args.flclass is not None:
     filters['classs'] = list(classes.keys())[list(classes.values()).index(args.flclass[0].upper() + args.flclass[1:])]
+if args.attack is not None:
+    filters['attack'] = args.attack
+if args.life is not None:
+    filters['health'] = args.life
+if args.cost is not None:
+    filters['cost'] = args.cost
 logging.debug('Filters:\n' + str(filters))
 
 # create http request
@@ -181,4 +187,6 @@ for card in rawjson:
 logging.debug(printCards)
 
 # Print cards table
+#   printTitle: print table head title
+printTitle = ['Name', 'Cost', 'Attack', 'Life', 'Description', 'Classes', 'Set', 'Race', 'Rarity', 'Porularity']
 print(tabulate(printCards, printTitle, tablefmt="grid"))
