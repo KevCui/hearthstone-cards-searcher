@@ -46,6 +46,10 @@ def setNoneValue(data, filter):
         tmp.append(card)
     return tmp
 
+def getKeyByValue(lst, value):
+    "search and get list key by using value"
+    return list(lst.keys())[list(lst.values()).index(value[0].upper() + value[1:])]
+
 # Assert beautifulsoup is installed
 try:
     from bs4 import BeautifulSoup
@@ -65,11 +69,12 @@ except ImportError:
 #   run script with -d, active debug mode (log file will be created)
 parser = argparse.ArgumentParser()
 parser.add_argument('name', nargs='*', help='search text')
-parser.add_argument('-s', '--sort', choices=['cost', 'popularity'], dest="sortby", help='sort cards by cost or popularity. Default sort by cost')
+parser.add_argument('--sort', choices=['cost', 'popularity'], dest="sortby", help='sort cards by cost or popularity. Default sort by cost')
 parser.add_argument('-a', '--attack', help='filter attack value')
 parser.add_argument('-l', '--life', help='filter life value')
 parser.add_argument('-cs', '--cost', help='filter mana cost')
 parser.add_argument('-r', '--race', choices=['', 'dragon', 'mech', 'totem', 'demon', 'pirate', 'murloc', 'beast'], help='filter race')
+parser.add_argument('-rr', '--rarity', choices=['', 'free', 'common', 'rare', 'epic', 'legendary'], help='filter by card rarity')
 parser.add_argument('-c', '--class', choices=['neutral', 'warrior', 'priest',  'hunter', 'rogue', 'paladin', 'shaman', 'mage', 'warlock', 'druid'], dest='flclass', help='filter by class')
 parser.add_argument('-d', '--debug',  action='store_true', dest="debug", help='active debug log')
 args = parser.parse_args()
@@ -127,9 +132,11 @@ logging.debug('Rarities:\n' + str(rarities))
 # create filters
 filters = {}
 if args.flclass is not None:
-    filters['classs'] = list(classes.keys())[list(classes.values()).index(args.flclass[0].upper() + args.flclass[1:])]
+    filters['classs'] = getKeyByValue(classes, args.flclass)
 if args.race is not None:
-    filters['race'] = list(races.keys())[int(list(races.values()).index(args.race[0].upper() + args.race[1:]))]
+    filters['race'] = getKeyByValue(races, args.race)
+if args.rarity is not None:
+    filters['quality'] = getKeyByValue(rarities, args.rarity)
 if args.attack is not None:
     filters['attack'] = args.attack
 if args.life is not None:
