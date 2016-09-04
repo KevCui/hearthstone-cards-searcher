@@ -69,7 +69,7 @@ except ImportError:
 #   run script with -d, active debug mode (log file will be created)
 parser = argparse.ArgumentParser()
 parser.add_argument('name', nargs='*', help='search text')
-parser.add_argument('--standard', action='store_true', help='standard cards only')
+parser.add_argument('--standard', action='store_true', help='show standard cards only')
 parser.add_argument('--sort', choices=['cost', 'popularity'], dest="sortby", help='sort cards by cost or popularity. Default sort by cost')
 parser.add_argument('-a', '--attack', help='filter attack value')
 parser.add_argument('-l', '--life', help='filter life value')

@@ -50,10 +50,10 @@ optional arguments:
 ```
 
 ### Example
-* List **Overload** **Standard** **Epic** cards: ```hsSearch.py Overload -rr epic --standard```
+* List **Overload Epic** cards: ```hsSearch.py Overload -rr epic --standard```
 ![Alt text](https://github.com/KrazyCavin/hsSearch/blob/master/usage1.png "use case 1")
 
-* List **0** cost **Mage** card: ```hsSearch.py -cs 0 -c Mage```
+* List **0 cost Mage** card: ```hsSearch.py -cs 0 -c Mage```
 ![Alt text](https://github.com/KrazyCavin/hsSearch/blob/master/usage2.png "use case 2")
 
 * List **12 Attack** point cards: ```hsSearch.py -a 12```
