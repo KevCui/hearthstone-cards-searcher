@@ -70,10 +70,10 @@ except ImportError:
 parser = argparse.ArgumentParser()
 parser.add_argument('name', nargs='*', help='search text')
 parser.add_argument('--standard', action='store_true', help='show standard cards only')
-parser.add_argument('--sort', choices=['cost', 'popularity'], dest="sortby", help='sort cards by cost or popularity. Default sort by cost')
+parser.add_argument('--sort', choices=['cost', 'popularity'], dest="sortby", help='sort cards by mana or popularity. Default sort by mana')
 parser.add_argument('-a', '--attack', help='filter attack value')
 parser.add_argument('-l', '--life', help='filter life value')
-parser.add_argument('-cs', '--cost', help='filter mana cost')
+parser.add_argument('-m', '--mana', help='filter mana')
 parser.add_argument('-r', '--race', choices=['dragon', 'mech', 'totem', 'demon', 'pirate', 'murloc', 'beast'], help='filter race')
 parser.add_argument('-rr', '--rarity', choices=['free', 'common', 'rare', 'epic', 'legendary'], help='filter by card rarity')
 parser.add_argument('-c', '--class', choices=['neutral', 'warrior', 'priest',  'hunter', 'rogue', 'paladin', 'shaman', 'mage', 'warlock', 'druid'], dest='flclass', help='filter by class')
@@ -144,8 +144,8 @@ if args.attack is not None:
     filters['attack'] = args.attack
 if args.life is not None:
     filters['health'] = args.life
-if args.cost is not None:
-    filters['cost'] = args.cost
+if args.mana is not None:
+    filters['cost'] = args.mana
 logging.debug('Filters:\n' + str(filters))
 
 # fetch data from script and generate cards json
