@@ -11,17 +11,16 @@ hsSearch
 Show Hearthstone cards information in CLI. All cards data are collected from http://www.hearthhead.com/
 
 ### Requirement
-* python3
+* Python3
 * tabulate
-* beautifulsoup4
 
 ### Install python package
-* pip3 install -r requirements.txt
+* pip3 install tabulate
 
 ### How to use
 ```
-usage: hsSearch.py [-h] [--standard] [--sort {cost,popularity}] [-a ATTACK]
-                   [-l LIFE] [-cs COST]
+usage: hsSearch.py [-h] [-a ATTACK] [-l LIFE] [-t TEXT] [-m MANA] [-tp TYPE]
+                   [-s {basic,classic,kara,og,tgt,loe,brm}]
                    [-r {dragon,mech,totem,demon,pirate,murloc,beast}]
                    [-rr {free,common,rare,epic,legendary}]
                    [-c {neutral,warrior,priest,hunter,rogue,paladin,shaman,mage,warlock,druid}]
@@ -33,14 +32,15 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
-  --standard            standard cards only
-  --sort {cost,popularity}
-                        sort cards by cost or popularity. Default sort by cost
   -a ATTACK, --attack ATTACK
                         filter attack value
   -l LIFE, --life LIFE  filter life value
-  -cs COST, --cost COST
-                        filter mana cost
+  -t TEXT, --text TEXT  card description
+  -m MANA, --mana MANA  filter mana
+  -tp TYPE, --type TYPE
+                        card type
+  -s {basic,classic,kara,og,tgt,loe,brm}, --set {basic,classic,kara,og,tgt,loe,brm}
+                        card set
   -r {dragon,mech,totem,demon,pirate,murloc,beast}, --race {dragon,mech,totem,demon,pirate,murloc,beast}
                         filter race
   -rr {free,common,rare,epic,legendary}, --rarity {free,common,rare,epic,legendary}
