@@ -37,16 +37,16 @@ except ImportError:
 #   run script with -d, active debug mode (log file will be created)
 parser = argparse.ArgumentParser()
 parser.add_argument('name', nargs='*', help='search text')
-parser.add_argument('-a', '--attack',help='filter attack value')
-parser.add_argument('-l', '--life', help='filter life value')
-parser.add_argument('-s', '--set', choices=['basic', 'classic', 'kara', 'og', 'tgt', 'loe', 'brm'], help='card set')
-parser.add_argument('-m', '--mana', default='0,1,2,3,4,5,6,7', help='filter mana')
-parser.add_argument('-tp', '--type', default='minion,spell,weapon', help='card type')
-parser.add_argument('-t', '--text', help='card description')
-parser.add_argument('-r', '--race', choices=['dragon', 'mech', 'totem', 'demon', 'pirate', 'murloc', 'beast'], help='filter race')
+parser.add_argument('-a',  '--attack', help='filter attack value')
+parser.add_argument('-l',  '--life',   help='filter life value')
+parser.add_argument('-t',  '--text',   help='card description')
+parser.add_argument('-m',  '--mana',   default='0,1,2,3,4,5,6,7', help='filter mana')
+parser.add_argument('-tp', '--type',   default='minion,spell,weapon', help='card type')
+parser.add_argument('-s',  '--set',    choices=['basic', 'classic', 'kara', 'og', 'tgt', 'loe', 'brm'], help='card set')
+parser.add_argument('-r',  '--race',   choices=['dragon', 'mech', 'totem', 'demon', 'pirate', 'murloc', 'beast'], help='filter race')
 parser.add_argument('-rr', '--rarity', choices=['free', 'common', 'rare', 'epic', 'legendary'], help='filter by card rarity')
-parser.add_argument('-c', '--class', choices=['neutral', 'warrior', 'priest',  'hunter', 'rogue', 'paladin', 'shaman', 'mage', 'warlock', 'druid'], dest='flclass', default='', help='filter by class')
-parser.add_argument('-d', '--debug', action='store_true', dest="debug", help='active debug log')
+parser.add_argument('-c',  '--class',  choices=['neutral', 'warrior', 'priest',  'hunter', 'rogue', 'paladin', 'shaman', 'mage', 'warlock', 'druid'], dest='flclass', default='', help='filter by class')
+parser.add_argument('-d',  '--debug',  action='store_true', dest="debug", help='active debug log')
 args = parser.parse_args()
 
 # Config logging
@@ -74,19 +74,18 @@ for k in paramDict:
 logging.debug('url: ' + url)
 
 # Create filters
-filters = {}
-if args.text is not None:
-    filters['text']   = args.text
-if args.set is not None:
-    filters['set']    = args.set
-if args.race is not None:
-    filters['race']   = args.race
-if args.rarity is not None:
-    filters['rarity'] = args.rarity
-if args.attack is not None:
-    filters['attack'] = args.attack
-if args.life is not None:
-    filters['health'] = args.life
+#   filters: dict for filters
+filters = {
+    'set'   : args.set,
+    'text'  : args.text,
+    'race'  : args.race,
+    'rarity': args.rarity,
+    'attack': args.attack,
+    'health': args.life
+}
+
+#   remove None value filter item
+filters = dict((k, v) for k, v in filters.items() if v)
 logging.debug('Filters:\n' + str(filters))
 
 # Create http request
