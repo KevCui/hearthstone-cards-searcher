@@ -1,8 +1,8 @@
 ---
-title: hsSearch
-description: look up Hearthstone cards in terminal
-author: KrazyCevin
-tags: CLI, python, script
+Title: hsSearch
+Description: look up Hearthstone cards in terminal
+Author: KrazyCavin
+Tags: CLI, python, script
 created:  04 Sep 2016
 ---
 
