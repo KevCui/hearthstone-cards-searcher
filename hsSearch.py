@@ -33,7 +33,6 @@ except ImportError:
     sys.exit(1)
 
 # Setup parameter
-#   run script with -s, set sortby value
 #   run script with -d, active debug mode (log file will be created)
 parser = argparse.ArgumentParser()
 parser.add_argument('name', nargs='*', help='search text')
