@@ -23,9 +23,9 @@ def isCardFilteredOut(card, filter):
     if filter:
         for f in filter:
             if f in card.keys():
-                if str(f) == 'text' and str(filter[f]).upper() not in str(card[f]).upper():
+                if str(f) == 'text' and fv.upper() not in str(card[f]).upper():
                     return True
-                if str(f) != 'text' and str(filter[f]).upper() != str(card[f]).upper():
+                if str(f) != 'text' and str(card[f]).upper() not in [v.upper() for v in filter[f]]:
                     return True
             else:
                 return True
@@ -42,16 +42,16 @@ except ImportError:
 #   run script with -d, active debug mode (log file will be created)
 parser = argparse.ArgumentParser()
 parser.add_argument('name', nargs='*', help='search text')
-parser.add_argument('-a',  '--attack', help='filter attack value')
-parser.add_argument('-l',  '--life',   help='filter life value')
-parser.add_argument('-t',  '--text',   help='card description')
-parser.add_argument('-m',  '--mana',   default='0,1,2,3,4,5,6,7', help='filter mana')
-parser.add_argument('-tp', '--type',   default='minion,spell,weapon', help='card type')
-parser.add_argument('-f',  '--format', choices=['standard', 'wild', 'all'], default='standard', help='card set')
-parser.add_argument('-s',  '--set',    choices=['basic', 'classic', 'kara', 'og', 'tgt', 'loe', 'brm', 'gvg', 'naxx'], help='card set')
-parser.add_argument('-r',  '--race',   choices=['dragon', 'mech', 'totem', 'demon', 'pirate', 'murloc', 'beast'], help='filter race')
-parser.add_argument('-rr', '--rarity', choices=['free', 'common', 'rare', 'epic', 'legendary'], help='filter by card rarity')
-parser.add_argument('-c',  '--class',  choices=['neutral', 'warrior', 'priest',  'hunter', 'rogue', 'paladin', 'shaman', 'mage', 'warlock', 'druid'], dest='flclass', default='', help='filter by class')
+parser.add_argument('-a',  '--attack', nargs='*', help='filter attack value')
+parser.add_argument('-l',  '--life',   nargs='*', help='filter life value')
+parser.add_argument('-t',  '--text',   nargs='*', help='card description')
+parser.add_argument('-tp', '--type',   choices=['minon','spell','weapon'], default=['minion','spell','weapon'], nargs='*', help='card type')
+parser.add_argument('-m',  '--mana',   choices=['0','1','2','3','4','5','6','7'], default=['0','1','2','3','4','5','6','7'], nargs='*', help='filter mana')
+parser.add_argument('-f',  '--format', choices=['standard', 'wild'], default=['standard'], nargs='*', help='card set fromat: wild or standard')
+parser.add_argument('-s',  '--set',    choices=['basic', 'classic', 'kara', 'og', 'tgt', 'loe', 'brm', 'gvg', 'naxx'], nargs='*', help='card set')
+parser.add_argument('-r',  '--race',   choices=['dragon', 'mech', 'totem', 'demon', 'pirate', 'murloc', 'beast'], nargs='*', help='filter race')
+parser.add_argument('-rr', '--rarity', choices=['free', 'common', 'rare', 'epic', 'legendary'], nargs='*', help='filter by card rarity')
+parser.add_argument('-c',  '--class',  choices=['neutral', 'warrior', 'priest',  'hunter', 'rogue', 'paladin', 'shaman', 'mage', 'warlock', 'druid'], dest='flclass', default='', nargs='*', help='filter by class')
 parser.add_argument('-d',  '--debug',  action='store_true', dest="debug", help='active debug log')
 args = parser.parse_args()
 
@@ -69,11 +69,11 @@ printCards = [['Name', 'Cost', 'Attack', 'Life', 'Description', 'Type', 'Class',
 printColWidth = [20, 4, 6, 6, 80, 6, 7, 7, 6, 10]
 
 paramDict = {
-    'search' : '%20'.join(args.name),
-    'cost' : args.mana,
-    'type' : str(args.type).upper(),
-    'card_class': str(args.flclass).upper(),
-    'format': str(args.format).upper() if args.format != 'all' else '',
+    'search' :     '%20'.join(args.name),
+    'cost'   :     ','.join(args.mana),
+    'type'   :     ','.join(args.type).upper(),
+    'card_class':  ','.join(args.flclass).upper(),
+    'format':      ','.join(args.format).upper() if len(args.format) < 2 else '',
     'collectible': 'true'
 }
 

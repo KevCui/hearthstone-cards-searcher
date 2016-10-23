@@ -19,12 +19,15 @@ Show Hearthstone cards information in CLI. All cards data are collected from htt
 
 ### How to use
 ```
-usage: hsSearch.py [-h] [-a ATTACK] [-l LIFE] [-t TEXT] [-m MANA] [-tp TYPE]
-                   [-f {standard,wild,all}]
-                   [-s {basic,classic,kara,og,tgt,loe,brm,gvg,naxx}]
-                   [-r {dragon,mech,totem,demon,pirate,murloc,beast}]
-                   [-rr {free,common,rare,epic,legendary}]
-                   [-c {neutral,warrior,priest,hunter,rogue,paladin,shaman,mage,warlock,druid}]
+usage: hsSearch.py [-h] [-a [ATTACK [ATTACK ...]]] [-l [LIFE [LIFE ...]]]
+                   [-t [TEXT [TEXT ...]]]
+                   [-tp [{minon,spell,weapon} [{minon,spell,weapon} ...]]]
+                   [-m [{0,1,2,3,4,5,6,7} [{0,1,2,3,4,5,6,7} ...]]]
+                   [-f [{standard,wild} [{standard,wild} ...]]]
+                   [-s [{basic,classic,kara,og,tgt,loe,brm,gvg,naxx} [{basic,classic,kara,og,tgt,loe,brm,gvg,naxx} ...]]]
+                   [-r [{dragon,mech,totem,demon,pirate,murloc,beast} [{dragon,mech,totem,demon,pirate,murloc,beast} ...]]]
+                   [-rr [{free,common,rare,epic,legendary} [{free,common,rare,epic,legendary} ...]]]
+                   [-c [{neutral,warrior,priest,hunter,rogue,paladin,shaman,mage,warlock,druid} [{neutral,warrior,priest,hunter,rogue,paladin,shaman,mage,warlock,druid} ...]]]
                    [-d]
                    [name [name ...]]
 
@@ -33,22 +36,24 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
-  -a ATTACK, --attack ATTACK
+  -a [ATTACK ...], --attack [ATTACK ...]
                         filter attack value
-  -l LIFE, --life LIFE  filter life value
-  -t TEXT, --text TEXT  card description
-  -m MANA, --mana MANA  filter mana
-  -tp TYPE, --type TYPE
+  -l [LIFE ...], --life [LIFE ...]
+                        filter life value
+  -t [TEXT ...], --text [TEXT ...]
+                        card description
+  -tp [{minon,spell,weapon} ...], --type [{minon,spell,weapon} ...]
                         card type
-  -f {standard,wild,all}, --format {standard,wild,all}
+  -m [{0,1,2,3,4,5,6,7} ...], --mana [{0,1,2,3,4,5,6,7} ...]
+                        filter mana
+  -f [{standard,wild} ...], --format [{standard,wild} ...]
+                        card set fromat: wild or standard
+  -s [{basic,classic,kara,og,tgt,loe,brm,gvg,naxx} ...], --set [{basic,classic,kara,og,tgt,loe,brm,gvg,naxx} ...]
                         card set
-  -s {basic,classic,kara,og,tgt,loe,brm,gvg,naxx}, --set {basic,classic,kara,og,tgt,loe,brm,gvg,naxx}
-                        card set
-  -r {dragon,mech,totem,demon,pirate,murloc,beast}, --race {dragon,mech,totem,demon,pirate,murloc,beast}
-                        filter race
-  -rr {free,common,rare,epic,legendary}, --rarity {free,common,rare,epic,legendary}
+  -r [{dragon,mech,totem,demon,pirate,murloc,beast} [{dragon,mech,totem,demon,pirate,murloc,beast} ...]], --race [{dragon,mech,totem,demon,pirate,murloc,beast} [{dragon,mech,totem,demon,pirate,murloc,beast} ...]]
+  -rr [{free,common,rare,epic,legendary} ...]], --rarity [{free,common,rare,epic,legendary} ...]
                         filter by card rarity
-  -c {neutral,warrior,priest,hunter,rogue,paladin,shaman,mage,warlock,druid}, --class {neutral,warrior,priest,hunter,rogue,paladin,shaman,mage,warlock,druid}
+  -c [{neutral,warrior,priest,hunter,rogue,paladin,shaman,mage,warlock,druid} ...], --class [{neutral,warrior,priest,hunter,rogue,paladin,shaman,mage,warlock,druid} ...]
                         filter by class
   -d, --debug           active debug log
 ```
