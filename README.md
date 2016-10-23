@@ -69,4 +69,4 @@ optional arguments:
 
 * List **Medivh** card with **Neutral** class and **Mage** class:
 ```hsSearch.py medivh -c neutral mage```
-![Alt text](https://github.com/KrazyCavin/hsSearch/blob/master/example/usage2.png "use case 3")
+![Alt text](https://github.com/KrazyCavin/hsSearch/blob/master/example/usage3.png "use case 3")
