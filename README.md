@@ -1,13 +1,13 @@
 ---
-Title: hsSearch
+Title: hsSearcher
 Description: look up Hearthstone cards in terminal
 Author: KrazyCavin
 Tags: CLI, python, script
 created:  04 Sep 2016
 ---
 
-hsSearch
-========
+hsSearcher
+==========
 Show Hearthstone cards information in CLI. All cards data are collected from http://www.hearthhead.com/
 
 ### Requirement

@@ -108,7 +108,6 @@ logging.debug('json:\n' + str(rawjson))
 # Prepare cards list for print
 for card in rawjson:
     if not isCardFilteredOut(card, filters):
-        print(card['name'])
         printCards.append([
 	    verifyValue(card, 'name'),
 	    verifyValue(card, 'cost'),
