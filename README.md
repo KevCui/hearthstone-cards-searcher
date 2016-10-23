@@ -59,14 +59,11 @@ optional arguments:
 ```
 
 ### Example
-* List **Overload Epic** cards: ```hsSearch.py Overload -rr epic```
+* List **Overload Epic** or **Legendary** **Weapon** or **Spell** cards: ```hsSearch.py Overload -rr epic legendary -tp weapon spell```
 ![Alt text](https://github.com/KrazyCavin/hsSearch/blob/master/example/usage1.png "use case 1")
 
-* List **0 cost Mage** card: ```hsSearch.py -m 0 -c Mage```
+* List **8-10 Attack** point cards in both **wild** and **standard**, card set **GVG** and **KARA**: ```hsSearch.py -a 8 9 10 -f wild standard -s gvg kara```
 ![Alt text](https://github.com/KrazyCavin/hsSearch/blob/master/example/usage2.png "use case 2")
 
-* List **12 Attack** point cards: ```hsSearch.py -a 12```
-![Alt text](https://github.com/KrazyCavin/hsSearch/blob/master/example/usage3.png "use case 3")
-
-* List **Medivh** card wiht **Neutral** class: ```hsSearch.py medivh -c neutral```
-![Alt text](https://github.com/KrazyCavin/hsSearch/blob/master/example/usage4.png "use case 4")
+* List **Medivh** card with **Neutral** class and **Mage** class: ```hsSearch.py medivh -c neutral mage```
+![Alt text](https://github.com/KrazyCavin/hsSearch/blob/master/example/usage2.png "use case 3")
