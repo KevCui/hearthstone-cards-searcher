@@ -50,7 +50,7 @@ optional arguments:
                         card set fromat: wild or standard
   -s [{basic,classic,kara,og,tgt,loe,brm,gvg,naxx} ...], --set [{basic,classic,kara,og,tgt,loe,brm,gvg,naxx} ...]
                         card set
-  -r [{dragon,mech,totem,demon,pirate,murloc,beast} [{dragon,mech,totem,demon,pirate,murloc,beast} ...]], --race [{dragon,mech,totem,demon,pirate,murloc,beast} [{dragon,mech,totem,demon,pirate,murloc,beast} ...]]
+  -r [{dragon,mech,totem,demon,pirate,murloc,beast} ...], --race [{dragon,mech,totem,demon,pirate,murloc,beast} ...]
   -rr [{free,common,rare,epic,legendary} ...]], --rarity [{free,common,rare,epic,legendary} ...]
                         filter by card rarity
   -c [{neutral,warrior,priest,hunter,rogue,paladin,shaman,mage,warlock,druid} ...], --class [{neutral,warrior,priest,hunter,rogue,paladin,shaman,mage,warlock,druid} ...]
@@ -59,11 +59,14 @@ optional arguments:
 ```
 
 ### Example
-* List **Overload Epic** or **Legendary** **Weapon** or **Spell** cards: ```hsSearch.py Overload -rr epic legendary -tp weapon spell```
+* List **Overload Epic** or **Legendary** **Weapon** or **Spell** cards:
+```hsSearch.py Overload -rr epic legendary -tp weapon spell```
 ![Alt text](https://github.com/KrazyCavin/hsSearch/blob/master/example/usage1.png "use case 1")
 
-* List **8-10 Attack** point cards in both **wild** and **standard**, card set **GVG** and **KARA**: ```hsSearch.py -a 8 9 10 -f wild standard -s gvg kara```
+* List **8-10 Attack** point cards in both **wild** and **standard**, card set **GVG** and **KARA**:
+```hsSearch.py -a 8 9 10 -f wild standard -s gvg kara```
 ![Alt text](https://github.com/KrazyCavin/hsSearch/blob/master/example/usage2.png "use case 2")
 
-* List **Medivh** card with **Neutral** class and **Mage** class: ```hsSearch.py medivh -c neutral mage```
+* List **Medivh** card with **Neutral** class and **Mage** class:
+```hsSearch.py medivh -c neutral mage```
 ![Alt text](https://github.com/KrazyCavin/hsSearch/blob/master/example/usage2.png "use case 3")
