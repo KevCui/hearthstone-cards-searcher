@@ -12,15 +12,16 @@ Show Hearthstone cards information in CLI. All cards data are collected from htt
 
 ### Requirement
 * Python3
-* tabulate
+* texttable
 
 ### Install python package
-* pip3 install tabulate
+* pip install texttable
 
 ### How to use
 ```
 usage: hsSearch.py [-h] [-a ATTACK] [-l LIFE] [-t TEXT] [-m MANA] [-tp TYPE]
-                   [-s {basic,classic,kara,og,tgt,loe,brm}]
+                   [-f {standard,wild,all}]
+                   [-s {basic,classic,kara,og,tgt,loe,brm,gvg,naxx}]
                    [-r {dragon,mech,totem,demon,pirate,murloc,beast}]
                    [-rr {free,common,rare,epic,legendary}]
                    [-c {neutral,warrior,priest,hunter,rogue,paladin,shaman,mage,warlock,druid}]
@@ -39,7 +40,9 @@ optional arguments:
   -m MANA, --mana MANA  filter mana
   -tp TYPE, --type TYPE
                         card type
-  -s {basic,classic,kara,og,tgt,loe,brm}, --set {basic,classic,kara,og,tgt,loe,brm}
+  -f {standard,wild,all}, --format {standard,wild,all}
+                        card set
+  -s {basic,classic,kara,og,tgt,loe,brm,gvg,naxx}, --set {basic,classic,kara,og,tgt,loe,brm,gvg,naxx}
                         card set
   -r {dragon,mech,totem,demon,pirate,murloc,beast}, --race {dragon,mech,totem,demon,pirate,murloc,beast}
                         filter race

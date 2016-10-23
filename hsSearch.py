@@ -47,7 +47,8 @@ parser.add_argument('-l',  '--life',   help='filter life value')
 parser.add_argument('-t',  '--text',   help='card description')
 parser.add_argument('-m',  '--mana',   default='0,1,2,3,4,5,6,7', help='filter mana')
 parser.add_argument('-tp', '--type',   default='minion,spell,weapon', help='card type')
-parser.add_argument('-s',  '--set',    choices=['basic', 'classic', 'kara', 'og', 'tgt', 'loe', 'brm'], help='card set')
+parser.add_argument('-f',  '--format', choices=['standard', 'wild', 'all'], default='standard', help='card set')
+parser.add_argument('-s',  '--set',    choices=['basic', 'classic', 'kara', 'og', 'tgt', 'loe', 'brm', 'gvg', 'naxx'], help='card set')
 parser.add_argument('-r',  '--race',   choices=['dragon', 'mech', 'totem', 'demon', 'pirate', 'murloc', 'beast'], help='filter race')
 parser.add_argument('-rr', '--rarity', choices=['free', 'common', 'rare', 'epic', 'legendary'], help='filter by card rarity')
 parser.add_argument('-c',  '--class',  choices=['neutral', 'warrior', 'priest',  'hunter', 'rogue', 'paladin', 'shaman', 'mage', 'warlock', 'druid'], dest='flclass', default='', help='filter by class')
@@ -72,7 +73,7 @@ paramDict = {
     'cost' : args.mana,
     'type' : str(args.type).upper(),
     'card_class': str(args.flclass).upper(),
-    'format': 'STANDARD',
+    'format': str(args.format).upper() if args.format != 'all' else '',
     'collectible': 'true'
 }
 
