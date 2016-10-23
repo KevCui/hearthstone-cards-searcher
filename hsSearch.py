@@ -1,9 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import sys, re, json
+import os, sys, re, json
 import logging
 import urllib.request
 import argparse
+
+def configLog(debug):
+    "Configure logging"
+    logfile = os.path.basename(__file__).replace('.py', '.log') if args.debug == True else None
+    loglevel = logging.DEBUG if logfile is not None else None
+    logging.basicConfig(format='%(asctime)s [%(threadName)16s][%(module)14s][%(levelname)8s] %(message)s', filename=logfile, level=loglevel)
 
 def verifyValue(target, attribute):
     "Verify attribute exists in target"
@@ -25,11 +31,11 @@ def isCardFilteredOut(card, filter):
                 return True
     return False
 
-# Assert tabulate is installed
+# Assert texttable is installed
 try:
-    from tabulate import tabulate
+    import texttable
 except ImportError:
-    logging.critical("\nIt seems `tabulate` is not installed. Please run pip install -r requirements.txt")
+    logging.critical("\nIt seems `texttable` is not installed. Please run pip install texttable")
     sys.exit(1)
 
 # Setup parameter
@@ -49,14 +55,18 @@ parser.add_argument('-d',  '--debug',  action='store_true', dest="debug", help='
 args = parser.parse_args()
 
 # Config logging
-logfile = 'hssearch.log' if args.debug == True else None
-loglevel = logging.DEBUG if logfile is not None else None
-logging.basicConfig(format='%(asctime)s [%(threadName)16s][%(module)14s][%(levelname)8s] %(message)s', filename=logfile, level=loglevel)
+configLog(args.debug)
 logging.debug('args:\n' + str(args))
 
 # Define variable
+#   printCards: cards informations list for printing
+#   printColWidth: columns width list
 #   paramDict: dict for all params ued in url
 #   url: search url
+#   imgUrl: image url
+printCards = [['Name', 'Cost', 'Attack', 'Life', 'Description', 'Type', 'Class', 'Set', 'Race', 'Rarity']]
+printColWidth = [20, 4, 6, 6, 80, 6, 7, 7, 6, 10]
+
 paramDict = {
     'search' : '%20'.join(args.name),
     'cost' : args.mana,
@@ -67,6 +77,8 @@ paramDict = {
 }
 
 url = 'http://hearthstone.services.zam.com/v1/card?sort=cost,name'
+imgUrl = 'http://wow.zamimg.com/images/hearthstone/cards/enus/original/'
+
 for k in paramDict:
     if paramDict[k]:
         url += '&' + str(k) + '=' + str(paramDict[k])
@@ -94,15 +106,15 @@ rawjson = json.loads(urllib.request.urlopen(req).read().decode('utf-8'))
 logging.debug('json:\n' + str(rawjson))
 
 # Prepare cards list for print
-printCards = []
 for card in rawjson:
     if not isCardFilteredOut(card, filters):
+        print(card['name'])
         printCards.append([
 	    verifyValue(card, 'name'),
 	    verifyValue(card, 'cost'),
 	    verifyValue(card, 'attack'),
 	    verifyValue(card, 'health'),
-	    verifyValue(card, 'text'),
+            verifyValue(card, 'text') + '\n' + imgUrl + card['card_id'] + '.png',
 	    verifyValue(card, 'type'),
 	    verifyValue(card, 'card_class'),
 	    verifyValue(card, 'set'),
@@ -111,10 +123,11 @@ for card in rawjson:
 	])
 
 # Print cards table
-#   printTitle: print table head title
-if len(printCards) == 0:
+if len(printCards) == 1:
     print("Not match any Hearthstone cards.")
     sys.exit(1)
 
-printTitle = ['Name', 'Cost', 'Attack', 'Life', 'Description', 'Type', 'Class', 'Set', 'Race', 'Rarity']
-print(tabulate(printCards, printTitle, tablefmt="grid"))
+table = texttable.Texttable()
+table.set_cols_width(printColWidth)
+table.add_rows(printCards)
+print(table.draw())
