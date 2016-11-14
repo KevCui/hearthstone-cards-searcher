@@ -118,7 +118,7 @@ paramDict = {
 }
 
 url = 'http://hearthstone.services.zam.com/v1/card?sort=cost,name'
-imgUrl = 'http://wow.zamimg.com/images/hearthstone/cards/enus/original/'
+imgUrl = 'http://media.services.zam.com/v1/media/byName/hs/cards/enus/'
 
 for k in paramDict:
     if paramDict[k]:
