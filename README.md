@@ -44,7 +44,7 @@ optional arguments:
                         card description
   -tp [{minon,spell,weapon} ...], --type [{minon,spell,weapon} ...]
                         card type
-  -m [{0,1,2,3,4,5,6,7} ...], --mana [{0,1,2,3,4,5,6,7} ...]
+  -m [{0,1,2,3,4,5,6,7,8,9,10,11,12,25} ...], --mana [{0,1,2,3,4,5,6,7,8,9,10,11,12,25} ...]
                         filter mana
   -f [{standard,wild} ...], --format [{standard,wild} ...]
                         card set fromat: wild or standard
@@ -55,6 +55,7 @@ optional arguments:
                         filter by card rarity
   -c [{neutral,warrior,priest,hunter,rogue,paladin,shaman,mage,warlock,druid} ...], --class [{neutral,warrior,priest,hunter,rogue,paladin,shaman,mage,warlock,druid} ...]
                         filter by class
+  -i, --image           [Experimental] show card images using w3mimgdisplay
   -d, --debug           active debug log
 ```
 
@@ -70,3 +71,6 @@ optional arguments:
 * List **Medivh** card with **Neutral** class and **Mage** class:
 ```hsSearch.py medivh -c neutral mage```
 ![Alt text](https://github.com/KrazyCavin/hsSearch/blob/master/example/usage3.png "use case 3")
+
+### [Experimental] Show card images in console
+With option **-i**, script will show card images. The idea is using w3mimgdisplay to display image **above** console. The result looks nice but actually it's still not perfect...

@@ -31,6 +31,45 @@ def isCardFilteredOut(card, filter):
                 return True
     return False
 
+def downloadImg(url, card):
+    "Download card images from url to img"
+    imgUrl      = url + card
+    imgFolder   = os.path.dirname(__file__) + '/.img/'
+    imgFullName = imgFolder + card
+
+    logging.debug('Image Url: ' + imgUrl)
+
+    if not os.path.exists(imgFolder):
+        logging.debug('Creating img folder')
+        os.makedirs(imgFolder)
+
+    if not os.path.isfile(imgFullName):
+        logging.debug('Downloading img: ' + card)
+        urllib.request.urlretrieve(imgUrl, imgFullName)
+
+def displayImg(cards):
+    "Display img in terminal"
+    imgPerRow = 10    # 8 card images per row
+    imgWidth  = 150   # card image width 150px
+    imgHeight = 225   # card image height 225px
+    w3mimgdisplay = '/usr/lib/w3m/w3mimgdisplay'
+    i = 0
+
+    if os.path.isfile(w3mimgdisplay):
+        for card in cards:
+            imgFullName = os.path.dirname(__file__) + '/.img/' + card + '.png'
+            try:
+                x = ( i % imgPerRow) * imgWidth
+                y = ( i // imgPerRow) * imgHeight
+                logging.debug('Image: ' + str(i) + ' x: ' + str(x) + ' y: ' + str(y))
+
+                os.system('echo -e "0;1;' + str(x) + ';' + str(y) + ';' + str(imgWidth) + ';' + str(imgHeight) + ';;;;;' + imgFullName + '\n4;\n3;" | ' + w3mimgdisplay)
+                i += 1
+            except:
+                pass
+    else:
+        logging.debug('Not found ' + w3mimgdisplay)
+
 # Assert texttable is installed
 try:
     import texttable
@@ -52,6 +91,7 @@ parser.add_argument('-s',  '--set',    choices=['basic', 'classic', 'kara', 'og'
 parser.add_argument('-r',  '--race',   choices=['dragon', 'mech', 'totem', 'demon', 'pirate', 'murloc', 'beast'], nargs='*', help='filter race')
 parser.add_argument('-rr', '--rarity', choices=['free', 'common', 'rare', 'epic', 'legendary'], nargs='*', help='filter by card rarity')
 parser.add_argument('-c',  '--class',  choices=['neutral', 'warrior', 'priest',  'hunter', 'rogue', 'paladin', 'shaman', 'mage', 'warlock', 'druid'], dest='flclass', default='', nargs='*', help='filter by class')
+parser.add_argument('-i',  '--image',  action='store_true', dest="showimage", help='[Experimental] show card images using w3mimgdisplay')
 parser.add_argument('-d',  '--debug',  action='store_true', dest="debug", help='active debug log')
 args = parser.parse_args()
 
@@ -107,8 +147,13 @@ rawjson = json.loads(urllib.request.urlopen(req).read().decode('utf-8'))
 logging.debug('json:\n' + str(rawjson))
 
 # Prepare cards list for print
+cardId = []
 for card in rawjson:
     if not isCardFilteredOut(card, filters):
+
+        if args.showimage == True:
+            downloadImg(imgUrl, card['card_id'] + '.png')
+
         printCards.append([
 	    verifyValue(card, 'name'),
 	    verifyValue(card, 'cost'),
@@ -121,6 +166,7 @@ for card in rawjson:
 	    verifyValue(card, 'race'),
 	    verifyValue(card, 'rarity')
 	])
+        cardId.append(card['card_id'])
 
 # Print cards table
 if len(printCards) == 1:
@@ -131,3 +177,7 @@ table = texttable.Texttable()
 table.set_cols_width(printColWidth)
 table.add_rows(printCards)
 print(table.draw())
+
+# Show card images
+if args.showimage == True:
+    displayImg(cardId)
