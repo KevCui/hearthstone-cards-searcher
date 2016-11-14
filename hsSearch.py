@@ -133,7 +133,8 @@ filters = {
     'race'  : args.race,
     'rarity': args.rarity,
     'attack': args.attack,
-    'health': args.life
+    'health': args.life,
+    'cost'  : args.mana
 }
 
 #   remove None value filter item
