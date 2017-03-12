@@ -94,7 +94,12 @@ def main():
     parser.add_argument('-c',  '--class',  choices=['neutral', 'warrior', 'priest',  'hunter', 'rogue', 'paladin', 'shaman', 'mage', 'warlock', 'druid'], dest='flclass', default='', nargs='*', help='filter by class')
     parser.add_argument('-i',  '--image',  action='store_true', dest="showimage", help='[Experimental] show card images using w3mimgdisplay')
     parser.add_argument('-d',  '--debug',  action='store_true', dest="debug", help='active debug log')
+
+    if len(sys.argv) == 1:
+        parser.print_help()
+        sys.exit(1)
     args = parser.parse_args()
+
 
     # Config logging
     configLog(args.debug)
