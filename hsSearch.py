@@ -96,7 +96,7 @@ def main():
     parser.add_argument('-d',  '--debug',  action='store_true', dest="debug", help='active debug log')
 
     args = parser.parse_args()
-    if len(sys.argv) == 1 or (len(sys.argv) < 3 and args.debug != None):
+    if len(sys.argv) == 1 or (len(sys.argv) < 3 and args.debug != False):
         parser.print_help()
         sys.exit(1)
 
