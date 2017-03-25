@@ -95,11 +95,10 @@ def main():
     parser.add_argument('-i',  '--image',  action='store_true', dest="showimage", help='[Experimental] show card images using w3mimgdisplay')
     parser.add_argument('-d',  '--debug',  action='store_true', dest="debug", help='active debug log')
 
-    if len(sys.argv) == 1:
+    args = parser.parse_args()
+    if len(sys.argv) == 1 or (len(sys.argv) < 3 and args.debug != None):
         parser.print_help()
         sys.exit(1)
-    args = parser.parse_args()
-
 
     # Config logging
     configLog(args.debug)
