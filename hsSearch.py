@@ -23,7 +23,7 @@ def isCardFilteredOut(card, filter):
     if filter:
         for f in filter:
             if f in card.keys():
-                if str(f) == 'text' and fv.upper() not in str(card[f]).upper():
+                if str(f) == 'text' and f.upper() not in str(card[f]).upper():
                     return True
                 if str(f) != 'text' and str(card[f]).upper() not in [v.upper() for v in filter[f]]:
                     return True
