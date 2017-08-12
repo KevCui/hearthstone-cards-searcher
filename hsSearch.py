@@ -85,10 +85,10 @@ def main():
     parser.add_argument('-a',  '--attack', nargs='*', help='filter attack value')
     parser.add_argument('-l',  '--life',   nargs='*', help='filter life value')
     parser.add_argument('-t',  '--text',   nargs='*', help='card description')
-    parser.add_argument('-tp', '--type',   choices=['minon','spell','weapon'], default=['minion','spell','weapon'], nargs='*', help='card type')
+    parser.add_argument('-tp', '--type',   choices=['minon','spell','weapon', 'hero'], default=['minion','spell','weapon', 'hero'], nargs='*', help='card type')
     parser.add_argument('-m',  '--mana',   choices=['0','1','2','3','4','5','6','7','8','9','10','11','12','25'], default=['0','1','2','3','4','5','6','7','8','9','10','11','12','25'], nargs='*', help='filter mana')
     parser.add_argument('-f',  '--format', choices=['standard', 'wild'], default=['standard'], nargs='*', help='card set fromat: wild or standard')
-    parser.add_argument('-s',  '--set',    choices=['basic', 'classic', 'kara', 'og', 'tgt', 'loe', 'brm', 'gvg', 'naxx', 'gadget', 'ungoro'], nargs='*', help='card set')
+    parser.add_argument('-s',  '--set',    choices=['basic', 'classic', 'kara', 'og', 'tgt', 'loe', 'brm', 'gvg', 'naxx', 'gadget', 'ungoro', 'icecrown'], nargs='*', help='card set')
     parser.add_argument('-r',  '--race',   choices=['dragon', 'mech', 'totem', 'demon', 'pirate', 'murloc', 'beast', 'elemental'], nargs='*', help='filter race')
     parser.add_argument('-rr', '--rarity', choices=['free', 'common', 'rare', 'epic', 'legendary'], nargs='*', help='filter by card rarity')
     parser.add_argument('-c',  '--class',  choices=['neutral', 'warrior', 'priest',  'hunter', 'rogue', 'paladin', 'shaman', 'mage', 'warlock', 'druid'], dest='flclass', default='', nargs='*', help='filter by class')
@@ -111,7 +111,7 @@ def main():
     #   url: search url
     #   imgUrl: image url
     printCards = [['Name', 'Cost', 'Attack', 'Life', 'Description', 'Type', 'Class', 'Set', 'Race', 'Rarity']]
-    printColWidth = [20, 4, 6, 6, 76, 6, 7, 7, 10, 10]
+    printColWidth = [20, 4, 6, 6, 76, 6, 7, 8, 9, 10]
 
     paramDict = {
         'search' :     '%20'.join(args.name),
