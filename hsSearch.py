@@ -88,7 +88,7 @@ def main():
     parser.add_argument('-tp', '--type',   choices=['minon','spell','weapon', 'hero'], default=['minion','spell','weapon', 'hero'], nargs='*', help='card type')
     parser.add_argument('-m',  '--mana',   choices=['0','1','2','3','4','5','6','7','8','9','10','11','12','25'], default=['0','1','2','3','4','5','6','7','8','9','10','11','12','25'], nargs='*', help='filter mana')
     parser.add_argument('-f',  '--format', choices=['standard', 'wild'], default=['standard'], nargs='*', help='card set fromat: wild or standard')
-    parser.add_argument('-s',  '--set',    choices=['basic', 'classic', 'kara', 'og', 'tgt', 'loe', 'brm', 'gvg', 'naxx', 'gadget', 'ungoro', 'icecrown', 'lootapalooza'], nargs='*', help='card set')
+    parser.add_argument('-s',  '--set',    choices=['basic', 'classic', 'kara', 'og', 'tgt', 'loe', 'brm', 'gvg', 'naxx', 'gadget', 'ungoro', 'icecrown', 'lootapalooza', 'gilneas'], nargs='*', help='card set')
     parser.add_argument('-r',  '--race',   choices=['dragon', 'mech', 'totem', 'demon', 'pirate', 'murloc', 'beast', 'elemental'], nargs='*', help='filter race')
     parser.add_argument('-rr', '--rarity', choices=['free', 'common', 'rare', 'epic', 'legendary'], nargs='*', help='filter by card rarity')
     parser.add_argument('-c',  '--class',  choices=['neutral', 'warrior', 'priest',  'hunter', 'rogue', 'paladin', 'shaman', 'mage', 'warlock', 'druid'], dest='flclass', default='', nargs='*', help='filter by class')
