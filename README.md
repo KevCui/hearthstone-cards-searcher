@@ -24,7 +24,7 @@ usage: hsSearch.py [-h] [-a [ATTACK [ATTACK ...]]] [-l [LIFE [LIFE ...]]]
                    [-tp [{minon,spell,weapon,hero} [{minon,spell,weapon,hero} ...]]]
                    [-m [{0,1,2,3,4,5,6,7,8,9,10,11,12,25} [{0,1,2,3,4,5,6,7,8,9,10,11,12,25} ...]]]
                    [-f [{standard,wild} [{standard,wild} ...]]]
-                   [-s [{basic,classic,kara,og,tgt,loe,brm,gvg,naxx,gadget,ungoro,icecrown,lootapalooza,gilneas} [{basic,classic,kara,og,tgt,loe,brm,gvg,naxx,gadget,ungoro,icecrown,lootapalooza,gilneas} ...]]]
+                   [-s [{basic,classic,kara,og,tgt,loe,brm,gvg,naxx,gadget,ungoro,icecrown,lootapalooza,gilneas,boomsday} [{basic,classic,kara,og,tgt,loe,brm,gvg,naxx,gadget,ungoro,icecrown,lootapalooza,gilneas,boomsday} ...]]]
                    [-r [{dragon,mech,totem,demon,pirate,murloc,beast,elemental} [{dragon,mech,totem,demon,pirate,murloc,beast,elemental} ...]]]
                    [-rr [{free,common,rare,epic,legendary} [{free,common,rare,epic,legendary} ...]]]
                    [-c [{neutral,warrior,priest,hunter,rogue,paladin,shaman,mage,warlock,druid} [{neutral,warrior,priest,hunter,rogue,paladin,shaman,mage,warlock,druid} ...]]]
@@ -48,7 +48,7 @@ optional arguments:
                         filter mana
   -f [{standard,wild} [{standard,wild} ...]], --format [{standard,wild} [{standard,wild} ...]]
                         card set fromat: wild or standard
-  -s [{basic,classic,kara,og,tgt,loe,brm,gvg,naxx,gadget,ungoro,icecrown,lootapalooza,gilneas} [{basic,classic,kara,og,tgt,loe,brm,gvg,naxx,gadget,ungoro,icecrown,lootapalooza,gilneas} ...]], --set [{basic,classic,kara,og,tgt,loe,brm,gvg,naxx,gadget,ungoro,icecrown,lootapalooza,gilneas} [{basic,classic,kara,og,tgt,loe,brm,gvg,naxx,gadget,ungoro,icecrown,lootapalooza,gilneas} ...]]
+  -s [{basic,classic,kara,og,tgt,loe,brm,gvg,naxx,gadget,ungoro,icecrown,lootapalooza,gilneas,boomsday} [{basic,classic,kara,og,tgt,loe,brm,gvg,naxx,gadget,ungoro,icecrown,lootapalooza,gilneas,boomsday} ...]], --set [{basic,classic,kara,og,tgt,loe,brm,gvg,naxx,gadget,ungoro,icecrown,lootapalooza,gilneas,boomsday} [{basic,classic,kara,og,tgt,loe,brm,gvg,naxx,gadget,ungoro,icecrown,lootapalooza,gilneas,boomsday} ...]]
                         card set
   -r [{dragon,mech,totem,demon,pirate,murloc,beast,elemental} [{dragon,mech,totem,demon,pirate,murloc,beast,elemental} ...]], --race [{dragon,mech,totem,demon,pirate,murloc,beast,elemental} [{dragon,mech,totem,demon,pirate,murloc,beast,elemental} ...]]
                         filter race
