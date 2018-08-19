@@ -107,7 +107,7 @@ def main():
     # Define variable
     #   printCards: cards informations list for printing
     #   printColWidth: columns width list
-    #   paramDict: dict for all params ued in url
+    #   paramDict: dict for all params used in url
     #   url: search url
     #   imgUrl: image url
     printCards = [['Name', 'Cost', 'Attack', 'Life', 'Description', 'Type', 'Class', 'Set', 'Race', 'Rarity']]
