@@ -6,8 +6,11 @@ Tags: CLI, python, script
 created:  04 Sep 2016
 ---
 
-hsSearcher
+hsSearcher [RIP]
 ==========
+
+# Due to the server close, this script is not working :(
+
 Show Hearthstone cards information in CLI. All cards data are collected from http://www.hearthhead.com/
 
 ### Requirement
